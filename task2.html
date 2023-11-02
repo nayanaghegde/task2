@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+      * {
+    text-align: center;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 50px;
+    background-image:url("task1.jpeg");
+    background-size:cover;
+    background-repeat:no repeat;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input,
+select,
+button {
+    margin-bottom: 10px;
+}
+
+#result {
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+<div id="temperature-container">
+        <h1>Temperature Converter</h1>
+<table align="center">
+       <tr> <td><label for="temperature">Temperature in <sup>o</sup>C:</label></td>
+       <td> <input type="text" id="temperature" placeholder="Enter temperature" required></td></tr>
+        
+       <tr><td> <label for="unit">Unit:</label></td>
+       <td> <select id="unit">
+            
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select></td>
+    </tr></table>
+        <button onclick="convertTemperature()">Convert</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function convertTemperature() {
+            var temperatureInput = document.getElementById("temperature").value;
+            var unit = document.getElementById("unit").value;
+            if (isNaN(temperatureInput)) {
+                alert("Please enter a valid number for temperature.");
+                return;
+            }
+            var convertedTemperature;
+            switch (unit) {
+                case "celsius":
+                    convertedTemperature = (parseFloat(temperatureInput) - 32) * 5/9;
+                    break;
+                case "fahrenheit":
+                    convertedTemperature = (parseFloat(temperatureInput) * 9/5) + 32;
+                    break;
+                case "kelvin":
+                    convertedTemperature = parseFloat(temperatureInput) + 273.15;
+                    break;
+                default:
+                    alert("Invalid unit.");
+                    return;
+            }
+            document.getElementById("result").innerText = `Converted Temperature: ${convertedTemperature.toFixed(2)} ${unit.toUpperCase()}`;
+        }
+    </script>
+
+</body>
+</html>
+
